@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="table.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<head>
+    <title>Approved Proposals Entry</title>
+</head>
+<style>
+table, td, th {
+    border: 1.5px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th {
+    height: 20px;
+}
+td {
+    height: 20px;
+	width : 20%;
+}
+</style>
+
+<body ng-app="myApp" ng-controller="userCtrl">
+
+<h1 align="center">Approved Proposals Entry</h1>
+<button ng-click="new_proposal_entry()" class="w3-btn w3-green w3-ripple"  >New Proposal Entry </button>
+
+<br>
+<br>
+<br>
+<table  ng-show="table_show" align = "center"  >
+
+  <tr>
+    <th>PROPOSAL ID</th>
+     <td align = "left "><input   name = "proposal_id" ng-model="proposal_id"  required></td>
+  </tr>
+  
+  <tr>
+    <th>REGION</th>
+     <td align = "left "><input type="text" name= "region" ng-model="region" ></td>
+  </tr>
+ 
+  <tr>
+    <th>COUNTRY </th>
+     <td align = "left "><input type="text" name= "country" ng-model="country"></td>
+  </tr>
+  <tr>
+    <th>PROPOSAL TYPE</th>
+     <td align = "left "><input type="text"  name= "proposal_type" ng-model="proposal_type" ></td>
+  </tr>
+  <tr>
+    <th>PROPOSAL DATE</th>
+     <td align = "left "><input type="date" name= "proposal_date" ng-model="proposal_date" ></td>
+  </tr>
+    <tr>
+    <th>APPROVAL DATE</th>
+     <td align = "left "><input type="date" name= "approval_date" ng-model="approval_date" ></td>
+  </tr>
+    <tr>
+    <th>Shared with procurement team on
+</th>
+     <td align = "left "><input type="date" name= "shared_with_procurement_team_on" ng-model="shared_with_procurement_team_on" ></td>
+  </tr>
+    <tr>
+    <th>Approver</th>
+     <td align = "left "><input type="text" name= "approver" ng-model="approver" ></td>
+  </tr>
+    <tr>
+    <th>Number of Tasks Covered </th>
+     <td align = "left "><input type="number" name= "number_of_tasks_covered" ng-model="number_of_tasks_covered"  ></td>
+  </tr>
+    <tr>
+    <th>Device Qty </th>
+     <td align = "left "><input type="number" name= "device_qty" ng-model="device_qty" ></td>
+  </tr>
+    <tr>
+    <th>Accessary/Periperal Qty </th>
+     <td align = "left "><input type="number"  name= "accessary_periperal_qty" ng-model="accessary_periperal_qty" ></td>
+  </tr>
+  </tr>
+    <tr>
+    <th>Total Qty </th>
+     <td align = "left"><input type="number" name= "total_qty" ng-model="total_qty" ></td>
+  </tr>
+  </tr>
+    <tr>
+    <th>Status</th>
+     <td align = "center "><b>APPROVED</b></td>
+  </tr>
+  </table>
+  
+
+<br>
+
+
+ <button ng-show="table_show" class="w3-btn w3-red w3-ripple" ng-click="submitbutton()" style="float: right;" >Submit </button>
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('userCtrl', function($scope) {
+	$scope.table_show = false ;
+	$scope.new_proposal_entry = function() {
+	$scope.table_show = !$scope.table_show ;
+	}
+	
+    $scope.submitbutton = function() {
+       if(!($scope.proposal_id && $scope.region  && $scope.country  && $scope.proposal_date  && $scope.proposal_type  &&
+		$scope.approval_date   && $scope.number_of_tasks_covered  &&
+		$scope.device_qty   && $scope.total_qty ))
+		{
+		alert("Enter All Fields");
+		return;
+		}
+		else{
+		alert("Submitted Successfully ");
+		}
+		/* var obj = new Object();
+   obj.name = "Raj";
+   obj.age  = 32;
+   obj.married = false;
+   var jsonString= JSON.stringify(obj);*/
+		var app_proposal_entry_obj = new Object();
+		app_proposal_entry_obj.proposal_id = $scope.proposal_id;
+		app_proposal_entry_obj.region = $scope.region ;
+		app_proposal_entry_obj.country = $scope.country ;
+		app_proposal_entry_obj.proposal_type = $scope.proposal_type ;
+		app_proposal_entry_obj.proposal_date = $scope.proposal_date.toLocaleDateString() ;
+		app_proposal_entry_obj.approval_date = $scope.approval_date.toLocaleDateString() ;
+		app_proposal_entry_obj.shared_with_procurement_team_on = $scope.shared_with_procurement_team_on.toLocaleDateString() ;
+		app_proposal_entry_obj.approver = $scope.approver ;
+		app_proposal_entry_obj.number_of_tasks_covered = $scope.number_of_tasks_covered ;
+		app_proposal_entry_obj.device_qty = $scope.device_qty ;
+		app_proposal_entry_obj.accessary_periperal_qty = $scope.accessary_periperal_qty ;
+		app_proposal_entry_obj.total_qty = $scope.total_qty;
+		app_proposal_entry_obj.status = "APPROVED";
+		var app_proposal_entry_jsonString = JSON.stringify(app_proposal_entry_obj);
+	alert(app_proposal_entry_jsonString);
+		return;
+    };
+   	
+});
+</script>
+
+
+</body>
+</html>

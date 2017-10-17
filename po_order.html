@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<head>
+    <title>Purchase Order Entry</title>
+</head>
+<style>
+table, td, th {
+    border: 1.5px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th {
+    height: 20px;
+}
+td {
+    height: 20px;
+	width : 20%;
+}
+</style>
+
+<body ng-app="myApp" ng-controller="userCtrl">
+
+<h1 align="center">Purchase Order Entry</h1>
+<button ng-click="new_po_entry()" class="w3-btn w3-green w3-ripple" >New PO Entry </button>
+
+<br>
+<br>
+<br>
+<table  ng-show="table_show" align = "center" >
+  <tr>
+    <th>Wipro Order Reference</th>
+     <td><input   name = "wipro_order_reference" ng-model="wipro_order_reference"  required></td>
+  </tr>
+  
+  <tr>
+    <th>SAP PO Number</th>
+     <td><input type="text" name = "sap_po_order" ng-model="sap_po_order" ></td>
+  </tr>
+ 
+  <tr>
+    <th>Supplier </th>
+     <td><input type="text" name = "supplier" ng-model="supplier" ></td>
+  </tr>
+  <tr>
+    <th>VendorSO</th>
+     <td><input type="text" name = "vendorso" ng-model="venderso" ></td>
+  </tr>
+  <tr>
+    <th>Purchase Order Date</th>
+     <td><input type="date" name = "purchase_order_date" ng-model="purchase_order_date" ></td>
+  </tr>
+    <tr>
+    <th>Linked to Proposal ID</th>
+     <td><input type="text" name ="linked_to_proposal_id" ng-model="linked_to_proposal_id" ></td>
+  </tr>
+    <tr>
+    <th>Buyer</th>
+     <td><input type="text" name ="buyer" ng-model="buyer"  ></td>
+  </tr>
+    <tr>
+    <th>Ship To Location</th>
+     <td><input type="text"  name ="ship_to_location" ng-model="ship_to_location"   ></td>
+  </tr>
+    <tr>
+    <th>Ship to City </th>
+     <td><input type="text" name ="ship_to_city" ng-model="ship_to_city"   ></td>
+  </tr>
+    <tr>
+    <th>Device Qty </th>
+     <td><input type="number" name ="device_qty" ng-model="device_qty"   ></td>
+  </tr>
+    <tr>
+    <th>Accessary/Periperal Qty </th>
+     <td><input type="number" name ="accessary_periperal_qty" ng-model="accessary_periperal_qty"   ></td>
+  </tr>
+  </tr>
+    <tr>
+    <th>Total Qty </th>
+     <td><input type="number" name ="total_qty" ng-model="total_qty"  ></td>
+  </tr>
+  </tr>
+    <tr>
+    <th>Status</th>
+     <td align = "center "><b>ORDERED</b></td>
+  </tr>
+  </table>
+  
+
+<br>
+
+
+ <button ng-show="table_show" class="w3-btn w3-red w3-ripple" ng-click="submitbutton()" style="float: right;" >Submit </button>
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('userCtrl', function($scope) {
+
+$scope.table_show = false ;
+	$scope.new_po_entry = function() {
+	$scope.table_show = !$scope.table_show ;
+	}
+    $scope.submitbutton = function() {
+        if(!($scope.wipro_order_reference && $scope.sap_po_order && $scope.supplier && $scope.venderso && $scope.linked_to_proposal_id && 
+		$scope.buyer && $scope.ship_to_location && $scope.ship_to_city && $scope.device_qty && $scope.accessary_periperal_qty && 
+		$scope.total_qty ))
+		{
+		alert("Enter all the fields");
+			return;
+			}
+			
+			/* var obj = new Object();
+   obj.name = "Raj";
+   obj.age  = 32;
+   obj.married = false;
+   var jsonString= JSON.stringify(obj);*/
+   
+   var po_order_obj = new Object () ;
+   po_order_obj.wipro_order_reference = $scope.wipro_order_reference ;
+   po_order_obj.sap_po_order = $scope.sap_po_order ;
+   po_order_obj.supplier = $scope.supplier ;
+   po_order_obj.venderso = $scope.venderso ;
+   po_order_obj.purchase_order_date = $scope.purchase_order_date.toLocaleDateString() ;
+   po_order_obj.linked_to_proposal_id = $scope.linked_to_proposal_id ;
+   po_order_obj.buyer = $scope.buyer ;
+   po_order_obj.ship_to_location = $scope.ship_to_location ;
+   po_order_obj.ship_to_city = $scope.ship_to_city ;
+   po_order_obj.device_qty = $scope.device_qty ;
+   po_order_obj.accessary_periperal_qty = $scope.accessary_periperal_qty ;
+   po_order_obj.total_qty = $scope.total_qty ;
+   po_order_obj.status = "ORDERED";
+ 
+   var po_order_jsonstring = JSON.stringify(po_order_obj);
+   alert(po_order_jsonstring);
+
+		alert(" Submitted successfully ");
+    };
+    
+});
+</script>
+
+
+</body>
+</html>
