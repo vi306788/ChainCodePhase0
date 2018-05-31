@@ -1,0 +1,85 @@
+///////----------------- http://52.172.44.3:8080/chaincode------/////////////////
+
+{
+  "jsonrpc": "2.0",
+  "method": "invoke",
+  "params": {
+    "type": 1,
+    "chaincodeID": {
+      "name":"89ee9cf211261fb9c98a0c0d4e9fb0e6b5bd72c795004769668f93845dda5471b0dffa49fc541901f699904d9743f2a8524a473f71668e446f589b713cfbba24"
+    },
+    "ctorMsg": {
+      "args": [
+        "create_proposal_id", "UKLONBIR001", "Europe" , "UK", "SRP1" , "19/11/2017" , "19/11/2017" , "19/11/2017" , "20/11/2017" , "20/11/2017" , "5" , "2" , "3" , "5" , "approved"
+      ]
+    },
+    "secureContext": "lukas"
+  },
+  "id": 3
+}
+
+/////////////----------------------------------------/////////////////////////////
+
+
+{
+  "jsonrpc": "2.0",
+  "method": "deploy",
+  "params": {
+    "type": 1,
+    "chaincodeID": {
+      "path": "https://github.com//santhoshbalajibaskarwipro//Airbus//create_proposal"
+    },
+    "ctorMsg": {
+      "function": "init",
+      "args": [
+        "hi there"
+      ]
+    },
+    "secureContext": "<YOUR_USER_HERE>"
+  },
+  "id": 1
+} 
+
+////////////-----------------------------------------------------///////////////////
+
+
+{
+  "jsonrpc": "2.0",
+  "method": "query",
+  "params": {
+    "type": 1,
+    "chaincodeID": {
+      "name": "89ee9cf211261fb9c98a0c0d4e9fb0e6b5bd72c795004769668f93845dda5471b0dffa49fc541901f699904d9743f2a8524a473f71668e446f589b713cfbba24"
+    },
+    "ctorMsg": {
+      "args": [
+        "get_all_proposal_id", " "
+      ]
+    },
+    "secureContext": "lukas"
+  },
+  "id": 3
+}
+
+
+////////////////---------------------------------------/////////////////////////
+
+
+{
+  "jsonrpc": "2.0",
+  "method": "deploy",
+  "params": {
+    "type": 1,
+    "chaincodeID": {
+      "path": "https://github.com//santhoshbalajibaskarwipro//Airbus//create_po"
+    },
+    "ctorMsg": {
+      "function": "init",
+      "args": [
+        "hi there"
+      ]
+    },
+    "secureContext": "<YOUR_USER_HERE>"
+  },
+  "id": 1
+} 
